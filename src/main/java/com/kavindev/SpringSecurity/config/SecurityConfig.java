@@ -44,13 +44,11 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> {
-            ((AuthorizedUrl) requests
-                    .requestMatchers("/h2-console/**").permitAll()
-                    .requestMatchers("/signin").permitAll()
-                    .requestMatchers("/api/users").permitAll()
-                    .anyRequest()).authenticated();
-        });
+        http.authorizeHttpRequests((requests) -> ((AuthorizedUrl) requests
+                .requestMatchers("/h2-console/**").permitAll()
+                .requestMatchers("/signin").permitAll()
+                .requestMatchers("/api/signup").permitAll()
+                .anyRequest()).authenticated());
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler));
 //        http.httpBasic(Customizer.withDefaults());

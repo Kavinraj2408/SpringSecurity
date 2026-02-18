@@ -26,7 +26,7 @@ public class UserController {
     @Autowired
     DataSource dataSource;
 
-    @PostMapping("/users")
+    @PostMapping("/signup")
     public String createUser(@RequestParam String username,
                              @RequestParam String password,
                              @RequestParam String role){
